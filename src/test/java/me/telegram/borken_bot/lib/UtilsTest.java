@@ -11,7 +11,7 @@ import static org.junit.Assert.assertTrue;
 
 public class UtilsTest {
     @Test
-    public void checkGetRandomInRange() {
+    public void testGetRandomInRange() {
         getRandomInRange(1, 2, actual -> {
             assertTrue(actual >= 1 && actual <= 2);
             return null;
@@ -21,7 +21,7 @@ public class UtilsTest {
 
     @Test
     @Ignore
-    public void checkGetBigRandomInRange() {
+    public void testGetBigRandomInRange() {
         getRandomInRange(999999999, 2, 999999999, actual -> {
             assertTrue(actual >= 1 && actual <= 999999999);
             return null;
@@ -29,7 +29,7 @@ public class UtilsTest {
     }
 
     @Test
-    public void checkGetRandomInRangeConstant() {
+    public void testGetRandomInRangeConstant() {
         getRandomInRange(3, 3, actual -> {
             assertEquals(actual, new Integer(3));
             return null;
@@ -37,7 +37,7 @@ public class UtilsTest {
     }
 
     @Test
-    public void checkGetRandomInRangeReverse() {
+    public void testGetRandomInRangeReverse() {
         getRandomInRange(9, 8, actual -> {
             assertTrue(actual >= 8 && actual <= 9);
             return null;
@@ -53,7 +53,7 @@ public class UtilsTest {
     }
 
     @Test
-    public void checkGetNumericTokenLength() {
+    public void testGetNumericTokenLength() {
         assertEquals(0, Utils.getNumericTokenLength(null));
         assertEquals(0, Utils.getNumericTokenLength(""));
         assertEquals(4, Utils.getNumericTokenLength("1234"));

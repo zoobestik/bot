@@ -22,7 +22,7 @@ public class Dice extends AbsCommand {
         super(commandIdentifier, description);
     }
 
-    public Map<String, String> tokenize(String message) {
+    protected Map<String, String> tokenize(String message) {
         Map<String, String> groups = new HashMap<>();
 
         int i = message.indexOf(this.getCommandIdentifier());
@@ -101,15 +101,16 @@ public class Dice extends AbsCommand {
     @Override
     public void execute(AbsSender sender, User user, Chat chat, String[] args) {
         String message = String.join("", args);
+        Messenger.replay(sender, chat, request -> replayMessage(message));
+    }
 
-        Messenger.replay(sender, chat, request -> {
-            Map<String, String> params = tokenize(message);
+    private String replayMessage(String message) {
+        Map<String, String> params = tokenize(message);
 
-            if (params.size() != 0) {
-                return getMessage(params);
-            }
+        if (params.size() != 0) {
+            return getMessage(params);
+        }
 
-            return null;
-        });
+        return null;
     }
 }
