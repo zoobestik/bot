@@ -17,7 +17,7 @@ public class MagicBall extends AbsCommand {
         super(commandIdentifier, description);
     }
 
-    String[] getAnswers() {
+    protected String[] getAnswers() {
         if (answers == null) {
             answers = new String[]{
                     "Бесспорно",
