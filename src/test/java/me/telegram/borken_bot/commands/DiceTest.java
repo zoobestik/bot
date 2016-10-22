@@ -1,13 +1,13 @@
 package me.telegram.borken_bot.commands;
 
+import lib.TestUtils;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class DiceTest {
     private Dice dice;
@@ -101,5 +101,10 @@ public class DiceTest {
         assertEquals(null, groups.get("count"));
         assertEquals("20", groups.get("max"));
         assertEquals(null, groups.get("modifier"));
+    }
+
+    @Test
+    public void testConflictCommands() {
+        assertFalse(TestUtils.isConflict(dice));
     }
 }

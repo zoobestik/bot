@@ -50,7 +50,11 @@ public class MagicBall extends AbsCommand {
     }
 
     public void execute(AbsSender sender, User user, Chat chat, String[] args) {
-        Messenger.replay(sender, chat, request -> getAnswers()[Utils.getRandomInRange(1, answers.length)]);
+        Messenger.replay(sender, chat, request -> getAnswers()[getRandom()]);
+    }
+
+    protected Integer getRandom() {
+        return Utils.getRandomInRange(1, answers.length);
     }
 
     @Override

@@ -43,7 +43,7 @@ public class Dice extends AbsCommand {
         /* ====== / "min" (end) */
 
         /* ====== "max" parser (begin) ====== */
-        if (!"d".equals(message.substring(0, 1))) {
+        if (message.length() == 0 || !"d".equals(message.substring(0, 1))) {
             return null;
         }
 
@@ -74,7 +74,8 @@ public class Dice extends AbsCommand {
 
     @Override
     public boolean isValidAction(String action, Message message) {
-        return tokenize(action).size() > 0;
+        Map<String, String> tokens = tokenize(action);
+        return tokens != null && tokens.size() > 0;
     }
 
     protected String getMessage(Map<String, String> params) {

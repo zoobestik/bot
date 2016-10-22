@@ -17,8 +17,12 @@ public class GMBot extends TelegramLongPollingBot {
     protected final Pattern whiteSpaces = Pattern.compile("\\s+");
 
     GMBot() {
-        registry = Arrays.asList(
-                new Help(this),
+        registry = getCommandsList(this);
+    }
+
+    public static List<AbsCommand> getCommandsList(GMBot bot) {
+        return Arrays.asList(
+                new Help(bot),
                 new Dice(),
                 new MagicBall()
         );

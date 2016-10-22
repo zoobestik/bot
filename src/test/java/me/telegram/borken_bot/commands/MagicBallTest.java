@@ -1,22 +1,17 @@
 package me.telegram.borken_bot.commands;
 
-import me.telegram.borken_bot.lib.Utils;
+import lib.TestUtils;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
-import org.telegram.telegrambots.api.objects.Chat;
-import org.telegram.telegrambots.api.objects.User;
 import org.telegram.telegrambots.bots.AbsSender;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
 
+import static lib.TestUtils.executeSimple;
 import static org.junit.Assert.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-import static org.powermock.api.easymock.PowerMock.mockStatic;
-import static org.powermock.api.easymock.PowerMock.verify;
+import static org.mockito.Mockito.*;
 
 public class MagicBallTest {
     private MagicBall ball;
@@ -29,18 +24,17 @@ public class MagicBallTest {
     @Test
     @Ignore
     public void testGetAnswers() throws TelegramApiException {
-        mockStatic(Utils.class);
+        ball = spy(ball);
+        doReturn(5).when(ball).getRandom();
+
+        ArgumentCaptor<SendMessage> messageCaptor = ArgumentCaptor.forClass(SendMessage.class);
 
         AbsSender sender = mock(AbsSender.class);
 
-        ArgumentCaptor<SendMessage> msgCaptor = ArgumentCaptor.forClass(SendMessage.class);
-        verify(sender).sendMessage(msgCaptor.capture());
+        executeSimple(sender, ball, new String[]{"8"});
+        verify(sender).sendMessage(messageCaptor.capture());
 
-        when(Utils.getRandomInRange(any(), any())).thenReturn(5);
-
-        ball.execute(sender, new User(), new Chat(), new String[]{"8"});
-
-        SendMessage message = msgCaptor.getValue();
+        SendMessage message = messageCaptor.getValue();
 
         assertEquals("Мне кажется - «да»", message.getText());
     }
@@ -60,5 +54,10 @@ public class MagicBallTest {
         assertEquals(2, notations.length);
         assertEquals("8", notations[0]);
         assertEquals("ball", notations[1]);
+    }
+
+    @Test
+    public void testConflictCommands() {
+        assertFalse(TestUtils.isConflict(ball));
     }
 }
