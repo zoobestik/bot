@@ -36,7 +36,7 @@ public class Help extends AbsCommand {
 
         if (shortNotation != null && shortNotation.length > 0) {
             text = String.format(
-                    "\n%s\n%s",
+                    "%s\n%s",
                     text,
                     Arrays.stream(shortNotation)
                             .map(notation -> "/" + notation)
@@ -47,13 +47,15 @@ public class Help extends AbsCommand {
         return text;
     }
 
+    protected String getHelp() {
+        return bot.getRegistry().stream()
+                .map(Help::getCommandHelp)
+                .collect(Collectors.joining("\n\n"));
+    }
+
     @Override
     public void execute(AbsSender sender, User user, Chat chat, String[] args) {
-        Messenger.replay(sender, chat, request ->
-                bot.getRegistry().stream()
-                        .map(Help::getCommandHelp)
-                        .collect(Collectors.joining("\n"))
-        );
+        Messenger.replay(sender, chat, request -> getHelp());
     }
 
     @Override
