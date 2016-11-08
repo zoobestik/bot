@@ -50,6 +50,15 @@ public class DiceTest {
     }
 
     @Test
+    public void testTokenForShortWithDefault() {
+        Map<String, String> groups = dice.tokenize("dice");
+
+        assertEquals(null, groups.get("count"));
+        assertEquals("20", groups.get("max"));
+        assertEquals(null, groups.get("modifier"));
+    }
+
+    @Test
     public void testTokenForShortWithAll() {
         Map<String, String> groups = dice.tokenize("3 d  \n6 + 5");
 
