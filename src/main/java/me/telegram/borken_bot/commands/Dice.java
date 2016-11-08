@@ -10,7 +10,6 @@ import org.telegram.telegrambots.bots.AbsSender;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.IntStream;
 
 import static me.telegram.borken_bot.lib.Utils.getNumericTokenLength;
 
@@ -28,7 +27,7 @@ public class Dice extends AbsCommand {
         int i = message.indexOf(this.getCommandIdentifier());
 
         if (i != -1) {
-            message = "d" + message.substring(this.getCommandIdentifier().length());
+            message = "d20";
         }
 
         message = StringUtils.deleteWhitespace(message);
@@ -82,9 +81,7 @@ public class Dice extends AbsCommand {
         if (params != null) {
             int max = params.get("max") != null ? Integer.parseInt(params.get("max"), 10) : 20;
             int count = params.get("count") != null ? Integer.parseInt(params.get("count"), 10) : 1;
-            int random = IntStream.generate(() -> Utils.getRandomInRange(1, max))
-                    .limit(count)
-                    .sum();
+            int random = Utils.getRandomInRange(count, max * count);
 
             if (params.containsKey("modifier")) {
                 random += Integer.parseInt(params.get("modifier"));
@@ -96,7 +93,7 @@ public class Dice extends AbsCommand {
     }
 
     public String[] getShortNotations() {
-        return new String[]{"dice20", "d20", "2d4+3"};
+        return new String[]{"dice20", "d20", "2d4m3", "2d4 + 3"};
     }
 
     @Override
