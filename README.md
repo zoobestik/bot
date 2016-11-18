@@ -23,5 +23,12 @@ More information in [Telegram Bot Api page](https://core.telegram.org/bots#3-how
 docker-compose up
 ```
 
+## Development
+
+1. Install [jdk8 or more](http://www.oracle.com/technetwork/java/javase/downloads/) and [Maven](https://maven.apache.org/install.html).
+2. Install [Jetbrains IDEA CE](https://www.jetbrains.com/idea/download/) and [create new project](https://www.jetbrains.com/idea/documentation/).
+4. [Register new bot](https://core.telegram.org/bots#3-how-do-i-create-a-bot) for debugging.
+3. Configure "Run configuration" ![](dev_run_config.png)
+
 ## Acknowledgements
 [![Develop By](https://img.shields.io/badge/develop%20by-zoobestik-blue.svg?style=flat)](https://ru.linkedin.com/in/kbchernenko) [![MIT license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
