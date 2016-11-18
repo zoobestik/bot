@@ -2,16 +2,9 @@ package me.telegram.borken_bot.commands;
 
 import lib.TestUtils;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
-import org.mockito.ArgumentCaptor;
-import org.telegram.telegrambots.api.methods.send.SendMessage;
-import org.telegram.telegrambots.bots.AbsSender;
-import org.telegram.telegrambots.exceptions.TelegramApiException;
 
-import static lib.TestUtils.executeSimple;
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
 
 public class MagicBallTest {
     private MagicBall ball;
@@ -19,24 +12,6 @@ public class MagicBallTest {
     @Before
     public void setUp() {
         ball = new MagicBall();
-    }
-
-    @Test
-    @Ignore
-    public void testGetAnswers() throws TelegramApiException {
-        ball = spy(ball);
-        doReturn(5).when(ball).getRandom();
-
-        ArgumentCaptor<SendMessage> messageCaptor = ArgumentCaptor.forClass(SendMessage.class);
-
-        AbsSender sender = mock(AbsSender.class);
-
-        executeSimple(sender, ball, new String[]{"8"});
-        verify(sender).sendMessage(messageCaptor.capture());
-
-        SendMessage message = messageCaptor.getValue();
-
-        assertEquals("Мне кажется - «да»", message.getText());
     }
 
     @Test
