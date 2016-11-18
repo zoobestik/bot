@@ -10,7 +10,6 @@ import org.telegram.telegrambots.bots.AbsSender;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.IntStream;
 
 import static me.telegram.borken_bot.lib.Utils.getNumericTokenLength;
 
@@ -22,13 +21,19 @@ public class Dice extends AbsCommand {
         super(commandIdentifier, description);
     }
 
-    public Map<String, String> tokenize(String message) {
+    protected Map<String, String> tokenize(String message) {
         Map<String, String> groups = new HashMap<>();
 
         int i = message.indexOf(this.getCommandIdentifier());
 
         if (i != -1) {
-            message = "d" + message.substring(this.getCommandIdentifier().length());
+            String suffix = message.substring(this.getCommandIdentifier().length());
+
+            if (suffix.equals("")) {
+                suffix = "20";
+            }
+
+            message = "d" + suffix;
         }
 
         message = StringUtils.deleteWhitespace(message);
@@ -43,7 +48,7 @@ public class Dice extends AbsCommand {
         /* ====== / "min" (end) */
 
         /* ====== "max" parser (begin) ====== */
-        if (!"d".equals(message.substring(0, 1))) {
+        if (message.length() == 0 || !"d".equals(message.substring(0, 1))) {
             return null;
         }
 
@@ -58,13 +63,16 @@ public class Dice extends AbsCommand {
          /* ====== / "max" (end) ====== */
 
         /* ====== "modifier" parser (begin) ====== */
-        if (message.length() > 0 && "+".equals(message.substring(0, 1))) {
-            message = message.substring(1);
+        if (message.length() > 0) {
+            String ch = message.substring(0, 1);
+            if ("+".equals(ch) || "m".equals(ch)) {
+                message = message.substring(1);
 
-            i = getNumericTokenLength(message);
+                i = getNumericTokenLength(message);
 
-            if (i != 0) {
-                groups.put("modifier", message.substring(0, i));
+                if (i != 0) {
+                    groups.put("modifier", message.substring(0, i));
+                }
             }
         }
         /* ====== / "modifier" (end) ======= */
@@ -74,16 +82,15 @@ public class Dice extends AbsCommand {
 
     @Override
     public boolean isValidAction(String action, Message message) {
-        return tokenize(action).size() > 0;
+        Map<String, String> tokens = tokenize(action);
+        return tokens != null && tokens.size() > 0;
     }
 
     protected String getMessage(Map<String, String> params) {
         if (params != null) {
             int max = params.get("max") != null ? Integer.parseInt(params.get("max"), 10) : 20;
             int count = params.get("count") != null ? Integer.parseInt(params.get("count"), 10) : 1;
-            int random = IntStream.generate(() -> Utils.getRandomInRange(1, max))
-                    .limit(count)
-                    .sum();
+            int random = Utils.getRandomInRange(count, max * count);
 
             if (params.containsKey("modifier")) {
                 random += Integer.parseInt(params.get("modifier"));
@@ -95,21 +102,22 @@ public class Dice extends AbsCommand {
     }
 
     public String[] getShortNotations() {
-        return new String[]{"dice20", "d20", "2d4+3"};
+        return new String[]{"dice20", "d20", "2d4m3", "2d4 + 3"};
     }
 
     @Override
     public void execute(AbsSender sender, User user, Chat chat, String[] args) {
         String message = String.join("", args);
+        Messenger.replay(sender, chat, request -> replayMessage(message));
+    }
 
-        Messenger.replay(sender, chat, request -> {
-            Map<String, String> params = tokenize(message);
+    private String replayMessage(String message) {
+        Map<String, String> params = tokenize(message);
 
-            if (params.size() != 0) {
-                return getMessage(params);
-            }
+        if (params.size() != 0) {
+            return getMessage(params);
+        }
 
-            return null;
-        });
+        return null;
     }
 }
