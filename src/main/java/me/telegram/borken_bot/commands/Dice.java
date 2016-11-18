@@ -27,7 +27,13 @@ public class Dice extends AbsCommand {
         int i = message.indexOf(this.getCommandIdentifier());
 
         if (i != -1) {
-            message = "d20";
+            String suffix = message.substring(this.getCommandIdentifier().length());
+
+            if (suffix.equals("")) {
+                suffix = "20";
+            }
+
+            message = "d" + suffix;
         }
 
         message = StringUtils.deleteWhitespace(message);
@@ -57,13 +63,16 @@ public class Dice extends AbsCommand {
          /* ====== / "max" (end) ====== */
 
         /* ====== "modifier" parser (begin) ====== */
-        if (message.length() > 0 && "+".equals(message.substring(0, 1))) {
-            message = message.substring(1);
+        if (message.length() > 0) {
+            String ch = message.substring(0, 1);
+            if ("+".equals(ch) || "m".equals(ch)) {
+                message = message.substring(1);
 
-            i = getNumericTokenLength(message);
+                i = getNumericTokenLength(message);
 
-            if (i != 0) {
-                groups.put("modifier", message.substring(0, i));
+                if (i != 0) {
+                    groups.put("modifier", message.substring(0, i));
+                }
             }
         }
         /* ====== / "modifier" (end) ======= */
