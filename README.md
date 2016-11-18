@@ -1,5 +1,5 @@
 # Broken Telegram Bot
-[![Build Status](https://travis-ci.org/zoobestik/telegram_bot_example.svg?branch=master)](https://travis-ci.org/zoobestik/telegram_bot_example)
+[![Build Status](https://travis-ci.org/zoobestik/borken_bot.svg?branch=master)](https://travis-ci.org/zoobestik/borken_bot)
 [![Docker Image](https://img.shields.io/badge/ready%20for-docker-ff69b4.svg?style=flat)](https://hub.docker.com/r/zoobestik/gamebot/)
 [![Telegram](https://img.shields.io/badge/join%20to-telegram-blue.svg?style=flat)](https://telegram.me/borken_bot)
 
@@ -8,7 +8,7 @@ A simple telegram bots wrote in Java. More in [CHANGELOG](CHANGELOG.md)
 ## Usage
 **Step 1:** Installing from command line[1]:
 ```bash
-curl https://raw.githubusercontent.com/zoobestik/telegram_bot_example/master/docker-compose.yml > docker-compose.yml
+curl https://raw.githubusercontent.com/zoobestik/borken_bot/master/docker-compose.yml > docker-compose.yml
 echo "TELEGRAM_BOT_NAME=<...name...>" >> .env
 echo "TELEGRAM_BOT_TOKEN=<...token...>" >> .env
 ```
