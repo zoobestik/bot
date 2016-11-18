@@ -3,7 +3,7 @@
 [![Docker Image](https://img.shields.io/badge/ready%20for-docker-ff69b4.svg?style=flat)](https://hub.docker.com/r/zoobestik/gamebot/)
 [![Telegram](https://img.shields.io/badge/join%20to-telegram-blue.svg?style=flat)](https://telegram.me/borken_bot)
 
-A simple telegram bots wrote in Java
+A simple telegram bots wrote in Java. More in [CHANGELOG](CHANGELOG.md)
 
 ## Usage
 **Step 1:** Installing from command line[1]:

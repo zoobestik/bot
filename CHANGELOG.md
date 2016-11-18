@@ -1,5 +1,21 @@
 # Change Log
 
+## 1.1 (November 18, 2016)
+
+First stable release
+
+#### With **Dice** improves
+- Result returns faster
+- New alias "**m**" (like d20**m4**) for modifiers
+
+### Bug fixing
+- **Dice** – default command "/dice" fixed
+- **Help** – remove newline from message bottom
+
+### Development features
+- `travis` – builds shared cache
+- **All plugins with unit tests now**
+
 ## 1.0 (October 19, 2016)
 
 Initial public release
