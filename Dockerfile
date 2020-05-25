@@ -1,4 +1,4 @@
-FROM ibmjava:latest
+FROM openjdk:alpine
 
 MAINTAINER Konstantin Chernenko <kb.chernenko@gmail.com> (@zoobestik)
 
