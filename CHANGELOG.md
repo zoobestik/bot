@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.2 (May 25, 2020)
+
+Fix wrong TSL connection to API
+
 ## 1.1 (November 18, 2016)
 
 First stable release

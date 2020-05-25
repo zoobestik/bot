@@ -1,5 +1,6 @@
 package lib;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import me.telegram.borken_bot.GMBot;
 import me.telegram.borken_bot.commands.AbsCommand;
 import org.json.JSONObject;
@@ -8,6 +9,7 @@ import org.telegram.telegrambots.api.objects.Message;
 import org.telegram.telegrambots.api.objects.User;
 import org.telegram.telegrambots.bots.AbsSender;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.function.Function;
@@ -16,11 +18,15 @@ import java.util.stream.Stream;
 import static org.mockito.Mockito.mock;
 
 public class TestUtils {
-    public static void executeSimple(AbsSender sender, AbsCommand command, String[] args) {
-        JSONObject chatJson = new JSONObject();
-        chatJson.put("id", "123");
-        chatJson.put("type", "private");
-        command.execute(sender, new User(), new Chat(chatJson), args);
+    public static void executeSimple(AbsSender sender, AbsCommand command, String[] args) throws IOException {
+        String chatJson = "{\n" +
+            "\"id\": \"123\",\n" +
+            "\"type\", \"private\"\n" +
+        "}";
+
+        ObjectMapper mapper = new ObjectMapper();
+        Chat chat = mapper.readValue(chatJson, Chat.class);
+        command.execute(sender, new User(), chat, args);
     }
 
     public static boolean isConflict(AbsCommand command) {
