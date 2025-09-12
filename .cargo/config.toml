@@ -2,7 +2,6 @@
 incremental = true
 
 [alias]
-ci = "fmt --check --all && run -- clippy --all-targets --all-features -- -D warnings && run -- test"
 
 [profile.release]
 panic = "abort"
