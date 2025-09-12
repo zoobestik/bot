@@ -1,6 +1,7 @@
 use bot_lib::random_range;
 
 use teloxide::prelude::Requester;
+use teloxide::sugar::request::RequestReplyExt;
 use teloxide::types::Message;
 use teloxide::{Bot, RequestError};
 
@@ -30,6 +31,8 @@ fn get_random_answer() -> &'static str {
 }
 
 pub async fn answer(bot: Bot, msg: Message) -> Result<(), RequestError> {
-    bot.send_message(msg.chat.id, get_random_answer()).await?;
+    bot.send_message(msg.chat.id, get_random_answer())
+        .reply_to(msg.id)
+        .await?;
     Ok(())
 }

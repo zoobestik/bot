@@ -1,6 +1,7 @@
 use bot_lib::dice::{Dice, DiceError};
 
 use teloxide::prelude::{Message, Requester};
+use teloxide::sugar::request::RequestReplyExt;
 use teloxide::{Bot, RequestError};
 
 pub fn is_dice(msg: Message) -> bool {
@@ -9,6 +10,7 @@ pub fn is_dice(msg: Message) -> bool {
 
 pub async fn send_dice(bot: Bot, msg: Message, dice: Dice) -> Result<(), RequestError> {
     bot.send_message(msg.chat.id, dice.throw().to_string())
+        .reply_to(msg.id)
         .await?;
     Ok(())
 }
