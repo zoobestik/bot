@@ -54,15 +54,7 @@ impl Dice {
     }
 
     pub fn new_once(max: usize) -> Self {
-        Self::new_simple(max, 1)
-    }
-
-    pub fn new_simple(max: usize, count: usize) -> Self {
-        Self {
-            max,
-            count,
-            modifier: 0,
-        }
+        Self::new(max, 1, 0)
     }
 
     pub fn new(max: usize, count: usize, modifier: isize) -> Self {
@@ -81,5 +73,26 @@ impl Dice {
         }
 
         result
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_new() {
+        let dice = Dice::new(6, 2, 3);
+        assert_eq!(dice.max, 6);
+        assert_eq!(dice.count, 2);
+        assert_eq!(dice.modifier, 3);
+    }
+
+    #[test]
+    fn test_new_once() {
+        let dice = Dice::new_once(6);
+        assert_eq!(dice.max, 6);
+        assert_eq!(dice.count, 1);
+        assert_eq!(dice.modifier, 0);
     }
 }
