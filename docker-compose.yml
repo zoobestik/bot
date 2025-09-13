@@ -1,4 +1,4 @@
 services:
   bot:
-    image: zoobestik/gamebot:2.0.0-alpha.1
+    image: zoobestik/gamebot:v2
     env_file: .env
