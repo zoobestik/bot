@@ -29,6 +29,7 @@ pub async fn answer_by_msg(bot: Bot, msg: Message) -> Result<(), RequestError> {
                 msg.chat.id,
                 "Некорректный формат кубика. Используйте нотацию вроде: d6, 2d10, 2d4m3.",
             )
+            .reply_to(msg.id)
             .await?;
         }
     };

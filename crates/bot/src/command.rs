@@ -4,7 +4,7 @@ use teloxide::dispatching::HandlerExt;
 use teloxide::macros::BotCommands;
 use teloxide::prelude::ResponseResult;
 use teloxide::types::Message;
-use teloxide::{dptree, Bot};
+use teloxide::{Bot, dptree};
 
 mod ball;
 mod dice;
