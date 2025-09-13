@@ -36,7 +36,7 @@ docker-compose up
 ## Development
 
 ```bash
-git config core.hooksPath scripts/.githooks
+git config core.hooksPath scripts/githooks
 ```
 
 ## Acknowledgements
