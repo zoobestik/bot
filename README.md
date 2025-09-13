@@ -12,6 +12,12 @@ It supports:
 
 More in [CHANGELOG](CHANGELOG.md)
 
+---
+
+> ⚠️ **Warning**:
+> This is a new version of the bot rewritten in Rust. The old v1 JVM version is available
+> at [main-v1](https://github.com/zoobestik/bot/tree/main-v1)
+
 ## Usage
 
 **Step 1:** Installing from command line[1]:
