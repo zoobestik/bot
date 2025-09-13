@@ -1,7 +1,7 @@
 [package]
 name = "bot_cli"
 version.workspace = true
-description = ""
+description = "CLI interface for Rust bot that provides tabletop utilities for Telegram chats"
 keywords.workspace = true
 edition.workspace = true
 authors.workspace = true

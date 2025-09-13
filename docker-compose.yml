@@ -1,4 +1,8 @@
 services:
   bot:
     image: zoobestik/gamebot:v2
+    environment:
+      - BOT_DB_FILE=/app/data/bot.db
     env_file: .env
+    volumes:
+      - ./data/:/app/data:rw,optional

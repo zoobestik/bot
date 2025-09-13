@@ -1,7 +1,7 @@
 [package]
 name = "bot_core"
 version.workspace = true
-description = ""
+description = "A chat entertainment and tabletop utilities Telegram bot core components."
 keywords.workspace = true
 edition.workspace = true
 authors.workspace = true
@@ -12,5 +12,5 @@ publish.workspace = true
 
 [dependencies]
 teloxide.workspace = true
-serde = { version = "1.0.219", features = ["derive"] }
+serde = { version = "^1.0.219", features = ["derive"] }
 bot_lib = { path = "../lib" }

@@ -11,9 +11,9 @@ mod dice;
 mod help;
 
 #[derive(BotCommands, Clone)]
-#[command(rename_rule = "lowercase")]
+#[command(rename_rule = "lowercase", description = "Список доступных команд:")]
 pub enum Command {
-    #[command(description = "посмотреть список всех команд\n")]
+    #[command(description = "посмотреть список всех команд (текущее сообщение)")]
     Help,
     #[command(aliases = ["8", "8ball"], description = "спросить всевидящий шар")]
     Ball,

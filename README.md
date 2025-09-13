@@ -43,6 +43,9 @@ docker-compose up
 
 ```bash
 git config core.hooksPath scripts/githooks
+
+echo "BOT_DB_FILE=data/bot.db" > .env
+echo "BOT_TELEGRAM_TOKEN=<...token...>" >> .env
 ```
 
 ## Acknowledgements
