@@ -2,6 +2,8 @@
 incremental = true
 
 [alias]
+release = "build --release"
+check-all = "check --all-features"
 
 [profile.release]
 panic = "abort"
