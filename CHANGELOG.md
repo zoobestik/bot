@@ -1,8 +1,18 @@
 # Change Log
 
+## 2.0.0-alpha.1 (May 13, 2025)
+
+Rewrite in Rust.
+
+### BREAKING CHANGES
+
+- **Dice** with space in `+` (like `/d4 + 1`) modifiers non-supported.
+- **Dice**: with bot name non-supported, ex. present in help.
+- `TELEGRAM_BOT_NAME` is obsolete.
+
 ## 1.2 (May 25, 2020)
 
-Fix wrong TSL connection to API
+Fix the wrong TSL connection to API
 
 ## 1.1 (November 18, 2016)
 
@@ -14,7 +24,7 @@ First stable release
 
 ### Bug fixing
 - **Dice** – default command "/dice" fixed
-- **Help** – remove newline from message bottom
+- **Help** – remove a newline from the message bottom
 
 ### Development features
 - `travis` – builds shared cache
@@ -25,8 +35,9 @@ First stable release
 Initial public release
 
 #### Three new features
-- **Dice** — command for generate dice result
-- **8ball** — command analog [Magic 8 ball](https://en.wikipedia.org/wiki/Magic_8-Ball)
+
+- **Dice** — command for generate a dice result
+- **8-ball** — command analog [Magic 8-ball](https://en.wikipedia.org/wiki/Magic_8-Ball)
 - **Help** — command show commands list
 
 ### Preferences (from ENV)
