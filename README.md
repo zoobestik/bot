@@ -1,10 +1,16 @@
-# Broken Telegram Bot
+# Personal Telegram Bot
 
-[![Build Status](https://travis-ci.org/zoobestik/borken_bot.svg?branch=master)](https://travis-ci.org/zoobestik/borken_bot)
 [![Docker Image](https://img.shields.io/badge/ready%20for-docker-ff69b4.svg?style=flat)](https://hub.docker.com/r/zoobestik/gamebot/)
 [![Telegram](https://img.shields.io/badge/join%20to-telegram-blue.svg?style=flat)](https://telegram.me/borken_bot)
 
-A simple telegram bot. More in [CHANGELOG](CHANGELOG.md)
+A Telegram chat entertainment and tabletop utilities bot written in Rust.
+Runs on [teloxide](https://github.com/teloxide/teloxide/) with SQLite storage, and ships with Docker for easy deployment.
+
+It supports:
+ - dice-rolling with standard RPG notation (e.g., d20, 2d6m+3) 
+ - a Magic 8‑Ball,
+
+More in [CHANGELOG](CHANGELOG.md)
 
 ## Usage
 

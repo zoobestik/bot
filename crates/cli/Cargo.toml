@@ -1,0 +1,17 @@
+[package]
+name = "bot_cli"
+version.workspace = true
+description = ""
+keywords.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+readme.workspace = true
+repository.workspace = true
+publish.workspace = true
+
+[dependencies]
+dotenvy = { version = "^0.15.7" }
+bot_core = { path = "../bot" }
+tokio = { version = "^1.47.1", features = ["macros"] }
+teloxide.workspace = true
