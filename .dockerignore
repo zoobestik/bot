@@ -5,7 +5,6 @@
 
 .env
 target
-*.db
 
 *.DS_Store
 ._*

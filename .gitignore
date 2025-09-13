@@ -5,7 +5,7 @@
 
 .env
 target
-*.db
+data
 
 *.DS_Store
 ._*

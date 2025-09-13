@@ -2,6 +2,8 @@ FROM rust:1-alpine AS builder
 
 LABEL org.opencontainers.image.source=https://github.com/zoobestik/borken_botdo
 
+RUN apk update && apk upgrade && rm -rf /var/cache/apk/*
+
 RUN apk add --no-cache \
     build-base \
     pkgconfig \
@@ -21,6 +23,8 @@ RUN cargo build --release
 
 FROM alpine
 
-COPY --from=builder /usr/src/app/target/release/bot_cli /usr/local/bin/bot_cli
+COPY --from=builder /usr/src/app/target/release/bot_cli /usr/local/bin/bot
 
-CMD ["bot_cli"]
+WORKDIR "/app"
+
+CMD ["bot"]
